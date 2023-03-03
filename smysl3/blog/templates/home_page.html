@@ -1,0 +1,12 @@
+<html>
+    <title>Site Belekov Aden</title>
+    <h1>Belekov Aden</h1>
+<div class="article-list">
+    {% for article in acticles %}
+        <div class="article">
+            <h2 class="article-title">{{ article.title }}</h2>
+            <p class="article-summary">{{ article.summary }}</p>
+        </div>
+    {% endfor %}
+</div>
+</html>
