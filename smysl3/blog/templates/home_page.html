@@ -1,11 +1,13 @@
-<html>
-    <title>Site Belekov Aden</title>
+{% extends 'base.html' %}
+{% block title %}Site Belekov Aden{% endblock %}
+
+{% block content %}
     <h1>Belekov Aden</h1>
     <div class="article-list">
     {% for article in acticles %}
         <div class="article">
             <h2 class="article-title">
-                <a href="blog/{{ article.slug }}">
+                <a href="{{ article.get_absolute_url }}">
                     {{ article.title }}
                 </a>
             </h2>
@@ -13,4 +15,4 @@
         </div>
     {% endfor %}
     </div>
-</html>
+{% endblock %}
