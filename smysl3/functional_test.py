@@ -31,5 +31,17 @@ class BasicInstall(unittest.TestCase):
         self.assertTrue(arcticle_title)
         self.assertTrue(arcticle_summary)
 
+
+    def test_home_page_article_title_link_to_article_page(self):
+        self.browser.get('http://127.0.0.1:8000')
+        arcticle_title = self.browser.find_element(By.CLASS_NAME, 'article-title')
+        arcticle_title_text = arcticle_title.text
+        arcticle_link = arcticle_title.find_element(By.TAG_NAME, 'a')
+
+        self.browser.get(arcticle_link.get_attribute('href'))
+        arcticle_title_article = self.browser.find_element(By.CLASS_NAME, 'article-title')
+
+        self.assertEqual(arcticle_title_text, arcticle_title_article.text)
+
 if __name__ == '__main__':
     unittest.main()
