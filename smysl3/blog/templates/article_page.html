@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Site Belekov Aden{% endblock %}
 
 {% block content %}
-    <h1>Belekov Aden</h1>
-    <div class="article">
-        <h2 class="article-title">{{ article.title }}</h2>
-        <p class="article-full-text">{{ article.full_text }}</p>
+    <div class="blog">
+        <div class="row">
+            <div class="col-md-8 col-sm-12">
+                <div class="article">
+                    <h2 class="article-title">{{ article.title }}</h2>
+                    <p class="article-full-text">{{ article.full_text | safe }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

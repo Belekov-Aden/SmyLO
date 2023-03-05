@@ -14,13 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 import os
+os.chdir(r'C:\Users\Lenovo\PycharmProjects\youtubeDjango\smysl3')
 from django.contrib import admin
 from django.urls import path
-os.chdir(r'C:\Users\Lenovo\PycharmProjects\youtubeDjango\smysl3')
 from blog import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_page, name='home_page'),
-    path('blog/<slug:slug>', views.article_page, name='article_page'),
-
+    path('blog/<slug:slug>', views.article_page, name='article_page')
 ]

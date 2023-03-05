@@ -6,6 +6,7 @@ from django.test import TestCase
 from blog.views import home_page, article_page
 from blog.models import Article
 from datetime import datetime
+from django.urls import reverse
 
 class ArticlePageTest(TestCase):
 
@@ -64,19 +65,12 @@ class HomePageTest(TestCase):
         self.assertIn('summary 2', html)
         self.assertNotIn('full_text 2', html)
 
-    def test_root_url_resolves_to_home_page_view(self):
-        found = resolve('/')
-        self.assertEqual(found.func, home_page)
 
     def test_home_page_returns_correct_html(self):
-        request = HttpRequest()
-        response = home_page(request)
-        html = response.content.decode('utf8')
+        url = reverse('home_page')
+        response = self.client.get(url)
 
-        self.assertTrue(html.startswith('<!doctype html>'))
-        self.assertIn('<title>Site Belekov Aden</title>', html)
-        self.assertIn('<h1>Belekov Aden</h1>', html)
-        self.assertTrue(html.endswith('</html>'))
+        self.assertTemplateUsed(response, 'home_page.html')
 
 
 class ArticleModelTests(TestCase):

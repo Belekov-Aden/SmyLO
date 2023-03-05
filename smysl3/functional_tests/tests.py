@@ -1,12 +1,11 @@
 import pytz
-
+import os
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from django.test import LiveServerTestCase
 from blog.models import Article
 from datetime import datetime
-import unittest
 
 class BasicInstall(LiveServerTestCase):
 
@@ -14,6 +13,9 @@ class BasicInstall(LiveServerTestCase):
         option = webdriver.FirefoxOptions()
         option.add_argument('--headless')
         self.browser = webdriver.Firefox(options=option)
+        staging_server = os.environ.get('STAGING_SERVER')
+        if staging_server:
+            self.live_server_url = 'http://' + staging_server
         Article.objects.create(
             title='title 1',
             full_text='full_text 1',
@@ -34,6 +36,15 @@ class BasicInstall(LiveServerTestCase):
         self.browser.get(self.live_server_url)
         header = self.browser.find_element(By.TAG_NAME, 'h1').text
         self.assertIn('Belekov Aden', header)
+
+    def test_layout_and_styling(self):
+        # Edith goes to the home page
+        self.browser.get(self.live_server_url)
+        self.browser.set_window_size(1024, 768)
+
+        # She notices the input box is nicely centered
+        header = self.browser.find_element(By.TAG_NAME, 'h1')
+        self.assertTrue(header.location['x'] > 10)
 
     def test_home_page_blog(self):
         self.browser.get(self.live_server_url)
