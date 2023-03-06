@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 import os
-os.chdir(r'smysl3/')
+os.chdir(r'C:\Users\Lenovo\PycharmProjects\youtubeDjango\smysl3')
 from django.contrib import admin
 from django.urls import path
 from blog import views
