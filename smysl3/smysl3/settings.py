@@ -11,9 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
-from dotenv import load_dotenv, find_dotenv
-import dj_database_url
-from decouple import config
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -90,7 +88,6 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.config()
 
 
 # Password validation
