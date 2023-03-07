@@ -24,6 +24,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_page, name='home_page'),
     path('blog/<slug:slug>', views.article_page, name='article_page')
-]
-urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
